@@ -61,6 +61,18 @@ values
 
 insert into Verbale (DataViolazione, IndirizzoViolazione, NominativoAgente, DataTrascrizioneVerbale, Importo, DecurtamentoPunti, IdAnagrafica, IdViolazione)
 values
+('2009-12-18 14:30:00', 'Via Roma - Palermo', 'Agente Russo Paolo', '2009-12-19 11:45:00', 125.00, 3, 3, 6),
+('2009-05-16 12:40:00', 'Via Maqueda - Palermo', 'Agente Costa Luigi', '2009-05-17 10:20:00', 140.00, 3, 7, 1),
+('2009-02-10 10:15:00', 'Via Roma - Palermo', 'Agente Russo Paolo', '2009-02-11 16:30:00', 180.00, 2, 1, 1),
+('2009-03-22 14:45:00', 'Via Libertà - Palermo', 'Agente Marino Anna', '2009-03-23 11:20:00', 95.00, 0, 2, 2),
+('2009-04-18 08:30:00', 'Corso Calatafimi - Palermo', 'Agente Costa Luigi', '2009-04-19 15:45:00', 220.00, 5, 3, 3),
+('2009-06-05 11:20:00', 'Via Maqueda - Palermo', 'Agente Ferrara Maria', '2009-06-06 09:30:00', 550.00, 10, 4, 4),
+('2009-07-14 16:00:00', 'Viale Strasburgo - Palermo', 'Agente Rizzo Franco', '2009-07-15 13:15:00', 80.00, 0, 5, 5),
+('2009-01-08 09:45:00', 'Via Ruggero Settimo - Palermo', 'Agente Russo Paolo', '2009-01-09 14:00:00', 110.00, 2, 6, 6),
+('2009-08-25 13:30:00', 'Via Dante - Palermo', 'Agente Marino Anna', '2009-08-26 10:45:00', 130.00, 4, 7, 7),
+('2009-09-12 10:00:00', 'Via Garibaldi - Palermo', 'Agente Costa Luigi', '2009-09-13 16:20:00', 480.00, 8, 8, 8),
+('2009-10-30 15:15:00', 'Corso Italia - Palermo', 'Agente Ferrara Maria', '2009-10-31 12:30:00', 650.00, 10, 9, 9),
+('2009-11-20 08:50:00', 'Via Libertà - Palermo', 'Agente Rizzo Franco', '2009-11-21 14:45:00', 160.00, 5, 10, 10),
 ('2020-02-15 09:30:00', 'Via Roma - Palermo', 'Agente Russo Paolo', '2020-02-16 14:20:00', 150.00, 3, 1, 1),
 ('2021-03-10 15:45:00', 'Via Libertà - Palermo', 'Agente Marino Anna', '2021-03-11 10:15:00', 80.00, 0, 2, 2),
 ('2019-04-20 11:20:00', 'Corso Calatafimi - Palermo', 'Agente Costa Luigi', '2019-04-21 16:30:00', 200.00, 5, 3, 3),
@@ -82,7 +94,7 @@ values
 --Query Database
 
 --1 conteggio verbali
---select count(*) as VerbaliTotale from Verbale;
+select count(*) as VerbaliTotale from Verbale;
 
 --2 verbali per anagrafica
 select Anagrafica.Cognome, Anagrafica.Nome, count(Verbale.IdVerbale) as VerbaliTotale 
@@ -108,11 +120,11 @@ from Anagrafica
 inner join Verbale on Anagrafica.IdAnagrafica = Verbale.IdAnagrafica
 where Anagrafica.Citta = 'Palermo';
 
---6 violazioni febbraio-luglio 2019
+--6 violazioni febbraio-luglio 2009
 select Anagrafica.Cognome, Anagrafica.Nome, Anagrafica.Indirizzo, Verbale.DataViolazione, Verbale.Importo, Verbale.DecurtamentoPunti
 from Anagrafica
 inner join Verbale on Anagrafica.IdAnagrafica = Verbale.IdAnagrafica
-where Verbale.DataViolazione between '2019-02-01' and '2019-07-31';
+where Verbale.DataViolazione between '2009-02-01' and '2009-07-31';
 
 --7 totale importi per anagrafica
 select Anagrafica.Cognome, Anagrafica.Nome, sum(Verbale.Importo) as ImportoTotale
